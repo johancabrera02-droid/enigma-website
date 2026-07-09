@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enigma Collection RD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <nav>
+    <div class="logo-wrap">
+      <img src="logo-enigma.png" alt="Enigma Collection RD">
+    </div>
+    <div class="menu">
+      <a href="#productos" class="btn">Explorar colección</a>
+      <a href="#productos">Colección</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <p>ENIGMA COLLECTION RD</p>
+    <h1>Luxury Fashion Boutique</h1>
+    <a href="#productos" class="btn">Explorar colección</a>
+  </div>
+</header>
+
+<section class="intro">
+  <h2>Nuevos ingresos</h2>
+  <p>Moda, aromas y accesorios seleccionados para mujeres con estilo.</p>
+</section>
+
+<section id="productos" class="products">
+
+  <div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar por nombre, marca o código..."
+        oninput="searchProducts()"
+    >
+</div>
+
+<div class="filters">
+    <button onclick="filterProducts('Todos')" class="active">Todos</button>
+    <button onclick="filterProducts('Ropas')">Ropa</button>
+    <button onclick="filterProducts('Lencería')">Lencería</button>
+    <button onclick="filterProducts('Aromas')">Aromas</button>
+</div>
+
+<div id="productsGrid" class="grid">
+    Cargando productos...
+</div>
+
+
+</section>
+
+<section id="contacto" class="contact">
+  <h2>Compra por WhatsApp</h2>
+  <p>Pregunta por disponibilidad y recibe atención personalizada.</p>
+  <a class="btn" href="https://wa.me/18292174555" target="_blank">Escribir por WhatsApp</a>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
