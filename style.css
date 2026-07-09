@@ -88,9 +88,9 @@ nav{
     background:
         radial-gradient(circle at center, rgba(212,175,55,.18), transparent 30%),
         linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.90)),
-        url("logo-enigma.png");
+        url("hero-enigma.png");
 
-    background-size:contain;
+    background-size:cover;
     background-repeat:no-repeat;
     background-position:center;
     background-color:#111;
@@ -106,31 +106,34 @@ nav{
 }
 
 .hero-content{
+    max-width: 720px;
+    animation: fadeUp 1s ease;
+}
 
-    max-width:900px;
-
+.eyebrow{
+    display:inline-block;
+    color:#d4af37;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:20px;
 }
 
 .hero p{
-
-    color:#d4af37;
-
-    letter-spacing:5px;
-
-    margin-bottom:20px;
-
+    font-size:22px;
+    line-height:1.8;
+    color:#e8e8e8;
+    margin:30px auto;
+    max-width:620px;
 }
 
 .hero h1{
-
-    font-size:70px;
-
-    font-weight:700;
-
-    line-height:1.15;
-
-    margin-bottom:35px;
-
+    font-size:72px;
+    line-height:1.05;
+    font-weight:800;
+    margin-bottom:25px;
+    color:white;
 }
 
 .btn{
