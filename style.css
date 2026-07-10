@@ -206,9 +206,9 @@ nav{
 
 .products{
 
-    padding:90px 8%;
+    padding:140px 8%;
 
-    background:#f8f8f8;
+    background:#faf8f4;
 
 }
 
@@ -567,4 +567,61 @@ font-size:32px;
     background:#d4af37;
     border-color:#d4af37;
     color:#111;
+}
+
+.collection-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-bottom:60px;
+
+}
+
+.small-title{
+
+    display:block;
+
+    color:#d4af37;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+}
+
+.collection-header h2{
+
+    font-family:Georgia,"Times New Roman",serif;
+
+    font-size:52px;
+
+    font-weight:500;
+
+    color:#111;
+
+}
+
+.view-all{
+
+    color:#111;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.view-all:hover{
+
+    color:#d4af37;
 }
