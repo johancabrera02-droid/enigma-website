@@ -132,6 +132,41 @@
   <a class="btn" href="https://wa.me/18292174555" target="_blank">Escribir por WhatsApp</a>
 </section>
 
+<div id="productModal" class="product-modal" aria-hidden="true">
+  <div class="product-modal-overlay" onclick="closeProductModal()"></div>
+
+  <div class="product-modal-content" role="dialog" aria-modal="true">
+      <button
+          class="product-modal-close"
+          onclick="closeProductModal()"
+          aria-label="Cerrar vista del producto"
+      >
+          ×
+      </button>
+
+      <div class="product-modal-image">
+          <img id="modalImage" src="" alt="">
+      </div>
+
+      <div class="product-modal-info">
+          <span id="modalBrand" class="modal-brand"></span>
+          <h2 id="modalName"></h2>
+          <p id="modalDescription"></p>
+          <div id="modalPrice" class="modal-price"></div>
+
+          <a
+              id="modalWhatsApp"
+              class="modal-whatsapp"
+              href="#"
+              target="_blank"
+              rel="noopener"
+          >
+              Comprar por WhatsApp
+          </a>
+      </div>
+  </div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>

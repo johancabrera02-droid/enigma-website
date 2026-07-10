@@ -89,15 +89,20 @@ function renderProducts(){
       )}">
       Comprar por WhatsApp
     </a>
-  </div>
+  
+
+  <button
+   class="quick-view"
+   type="button"
+   onclick='openProductModal(${JSON.stringify(p)})'
+  >
+   Vista rápida
+  </button>
 
   <div class="card-body">
     <div class="brand">${p.marca || "ENIGMA"}</div>
     <div class="name">${p.nombre || ""}</div>
-    <div class="rating">
-    ★★★★★
-    <span>4.9</span>
-    </div>
+    
     <p class="desc">${p.descripcion || "Producto seleccionado por Enigma Collection RD."}</p>
     <div class="price">${money(p.precio_venta)}</div>
   </div>
@@ -106,6 +111,55 @@ function renderProducts(){
   
   animateProductCards();
 }
+
+function openProductModal(product){
+  const modal = document.getElementById("productModal");
+
+  document.getElementById("modalImage").src =
+      product.foto_url || "logo-enigma.png";
+
+  document.getElementById("modalImage").alt =
+      product.nombre || "Producto de Enigma Collection";
+
+  document.getElementById("modalBrand").textContent =
+      product.marca || "ENIGMA";
+
+  document.getElementById("modalName").textContent =
+      product.nombre || "";
+
+  document.getElementById("modalDescription").textContent =
+      product.descripcion ||
+      "Producto seleccionado por Enigma Collection RD.";
+
+  document.getElementById("modalPrice").textContent =
+      money(product.precio_venta);
+
+  document.getElementById("modalWhatsApp").href =
+      `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+          "Hola, me interesa este producto: " +
+          (product.nombre || "") +
+          " " +
+          money(product.precio_venta)
+      )}`;
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+function closeProductModal(){
+  const modal = document.getElementById("productModal");
+
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+}
+
+document.addEventListener("keydown", event => {
+  if(event.key === "Escape"){
+      closeProductModal();
+  }
+});
 
 function updateActiveButton(){
   document.querySelectorAll(".filters button").forEach(btn => {
