@@ -498,6 +498,32 @@ font-size:32px;
     background:#111;
 }
 
+.card-image::before{
+    content:"";
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:60%;
+    height:100%;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.28),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+    transition:left .8s ease;
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
 .card-image img{
     width:100%;
     height:380px;
@@ -507,6 +533,10 @@ font-size:32px;
 
 .card:hover .card-image img{
     transform:scale(1.06);
+}
+
+.card:hover .card-image::before{
+    left:160%;
 }
 
 .badge{
