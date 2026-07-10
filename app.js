@@ -73,7 +73,9 @@ function renderProducts(){
     return;
   }
 
-  grid.innerHTML = filtered.map(p => `
+  window.visibleProducts = filtered;
+
+grid.innerHTML = filtered.map((p, index) => `
   <div class="card">
   <div class="card-image">
     <img src="${p.foto_url || "logo-enigma.png"}" alt="${p.nombre || "Producto"}">
@@ -92,12 +94,14 @@ function renderProducts(){
   
 
   <button
-   class="quick-view"
-   type="button"
-   onclick='openProductModal(${JSON.stringify(p)})'
+    class="quick-view"
+    type="button"
+    onclick="openProductModalByIndex(${index})"
   >
-   Vista rápida
+    Vista rápida
   </button>
+
+  </div>
 
   <div class="card-body">
     <div class="brand">${p.marca || "ENIGMA"}</div>
@@ -107,9 +111,20 @@ function renderProducts(){
     <div class="price">${money(p.precio_venta)}</div>
   </div>
 </div>
-  `).join("");
+`).join("");
   
   animateProductCards();
+}
+
+function openProductModalByIndex(index){
+  const product = window.visibleProducts?.[index];
+
+  if(!product){
+      console.error("No se encontró el producto seleccionado.");
+      return;
+  }
+
+  openProductModal(product);
 }
 
 function openProductModal(product){
