@@ -78,11 +78,20 @@ function renderProducts(){
 grid.innerHTML = filtered.map((p, index) => `
   <div class="card">
   <div class="card-image">
-    <img src="${p.foto_url || "logo-enigma.png"}" alt="${p.nombre || "Producto"}">
+  <img
+  src="${p.foto_url || "logo-enigma.png"}"
+  alt="${p.nombre || "Producto"}"
+  class="product-image-clickable"
+  onclick="openProductModalByIndex(${index})"
+>
 
     <span class="badge">NUEVO</span>
 
-    <a class="image-buy" target="_blank"
+    <a
+    class="image-buy"
+    target="_blank"
+    rel="noopener"
+    onclick="event.stopPropagation()"
       href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
         "Hola, me interesa este producto: " +
         (p.nombre || "") +
@@ -93,13 +102,13 @@ grid.innerHTML = filtered.map((p, index) => `
     </a>
   
 
-  <button
+    <button
     class="quick-view"
     type="button"
-    onclick="openProductModalByIndex(${index})"
+    onclick="event.stopPropagation(); openProductModalByIndex(${index})"
   >
     Vista rápida
-  </button>
+</button>
 
   </div>
 

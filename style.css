@@ -970,3 +970,8 @@ body.modal-open{
         font-size:32px;
     }
 }
+
+.product-image-clickable{
+    cursor:pointer;
+}
+
