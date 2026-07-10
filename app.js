@@ -94,6 +94,10 @@ function renderProducts(){
   <div class="card-body">
     <div class="brand">${p.marca || "ENIGMA"}</div>
     <div class="name">${p.nombre || ""}</div>
+    <div class="rating">
+    ★★★★★
+    <span>4.9</span>
+    </div>
     <p class="desc">${p.descripcion || "Producto seleccionado por Enigma Collection RD."}</p>
     <div class="price">${money(p.precio_venta)}</div>
   </div>

@@ -269,6 +269,23 @@ nav{
     margin-bottom:14px;
 }
 
+.rating{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:18px;
+
+    color:#d4af37;
+
+    font-size:15px;
+}
+
+.rating span{
+    color:#777;
+    font-size:14px;
+    font-weight:600;
+}
+
 .price{
     font-size:28px;
     font-weight:800;
