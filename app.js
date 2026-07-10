@@ -48,21 +48,27 @@ function renderProducts(){
 
   grid.innerHTML = filtered.map(p => `
   <div class="card">
-     <div class="card-image">
-       <img src="${p.foto_url || "logo-enigma.png"}" alt="${p.nombre || "Producto"}">
-       <span class="badge">NEW</span>
-     </div>
+  <div class="card-image">
+    <img src="${p.foto_url || "logo-enigma.png"}" alt="${p.nombre || "Producto"}">
+
+    <span class="badge">NUEVO</span>
+
+    <a class="image-buy" target="_blank"
+      href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+        "Hola, me interesa este producto: " +
+        (p.nombre || "") +
+        " " +
+        money(p.precio_venta)
+      )}">
+      Comprar por WhatsApp
+    </a>
+  </div>
 
   <div class="card-body">
     <div class="brand">${p.marca || "ENIGMA"}</div>
     <div class="name">${p.nombre || ""}</div>
     <p class="desc">${p.descripcion || "Producto seleccionado por Enigma Collection RD."}</p>
     <div class="price">${money(p.precio_venta)}</div>
-
-    <a class="buy" target="_blank"
-      href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, me interesa este producto: " + (p.nombre || "") + " " + money(p.precio_venta))}">
-      Comprar por WhatsApp
-    </a>
   </div>
 </div>
   `).join("");

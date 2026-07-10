@@ -433,6 +433,8 @@ nav{
 
 @media(max-width:900px){
 
+  
+
 .hero h1{
 
 font-size:45px;
@@ -470,6 +472,7 @@ font-size:30px;
 
 font-size:32px;
 
+}
 }
 
 .card-image{
@@ -627,4 +630,102 @@ font-size:32px;
 .view-all:hover{
 
     color:#d4af37;
+}
+
+.image-buy{
+    position:absolute;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:15px 18px;
+    background:rgba(17,17,17,.92);
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.8px;
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity .35s ease, transform .35s ease, background .35s ease;
+}
+
+.card:hover .image-buy{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.image-buy:hover{
+    background:#d4af37;
+    color:#111;
+}
+
+/* BOTÓN SOBRE LA IMAGEN DEL PRODUCTO */
+
+.card-image{
+    position:relative;
+    overflow:hidden;
+}
+
+.card-image .image-buy{
+    position:absolute;
+    z-index:3;
+    left:20px;
+    right:20px;
+    bottom:20px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:15px 18px;
+    background:rgba(17,17,17,.94);
+    color:#fff;
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.8px;
+
+    opacity:0;
+    transform:translateY(15px);
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease,
+        background .35s ease;
+}
+
+.card:hover .image-buy{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card-image .image-buy:hover{
+    background:#d4af37;
+    color:#111;
+}
+
+.card-image .badge{
+    z-index:4;
+}
+
+@media (max-width:900px){
+    .image-buy{
+        opacity:1;
+        transform:none;
+        left:14px;
+        right:14px;
+        bottom:14px;
+    }
+
+    .card-body{
+        padding:22px 4px 10px;
+    }
+
+    .name{
+        font-size:25px;
+    }
 }
