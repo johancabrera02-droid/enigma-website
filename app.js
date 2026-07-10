@@ -7,6 +7,7 @@ const searchInput = document.getElementById("searchInput");
 let products = [];
 let currentCategory = "Todos";
 let currentSearch = "";
+let currentModalIndex = 0;
 
 function money(value){
   return "RD$ " + Number(value || 0).toLocaleString("es-DO");
@@ -133,7 +134,34 @@ function openProductModalByIndex(index){
       return;
   }
 
+  currentModalIndex = index;
   openProductModal(product);
+}
+
+function showPreviousProduct(){
+  const products = window.visibleProducts || [];
+
+  if(!products.length){
+      return;
+  }
+
+  currentModalIndex =
+      (currentModalIndex - 1 + products.length) % products.length;
+
+  openProductModal(products[currentModalIndex]);
+}
+
+function showNextProduct(){
+  const products = window.visibleProducts || [];
+
+  if(!products.length){
+      return;
+  }
+
+  currentModalIndex =
+      (currentModalIndex + 1) % products.length;
+
+  openProductModal(products[currentModalIndex]);
 }
 
 function openProductModal(product){
@@ -180,8 +208,22 @@ function closeProductModal(){
 }
 
 document.addEventListener("keydown", event => {
+  const modal = document.getElementById("productModal");
+
+  if(!modal?.classList.contains("open")){
+      return;
+  }
+
   if(event.key === "Escape"){
       closeProductModal();
+  }
+
+  if(event.key === "ArrowLeft"){
+      showPreviousProduct();
+  }
+
+  if(event.key === "ArrowRight"){
+      showNextProduct();
   }
 });
 
