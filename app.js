@@ -16,6 +16,33 @@ function normalize(value){
   return String(value || "").toLowerCase().trim();
 }
 
+function animateProductCards(){
+  const cards = document.querySelectorAll(".card:not(.reveal)");
+
+  const observer = new IntersectionObserver((entries, observerInstance) => {
+      entries.forEach(entry => {
+          if(entry.isIntersecting){
+              const card = entry.target;
+              const delay = Number(card.dataset.delay || 0);
+
+              setTimeout(() => {
+                  card.classList.add("reveal");
+              }, delay);
+
+              observerInstance.unobserve(card);
+          }
+      });
+  }, {
+      threshold:0.12,
+      rootMargin:"0px 0px -40px 0px"
+  });
+
+  cards.forEach((card, index) => {
+      card.dataset.delay = (index % 4) * 110;
+      observer.observe(card);
+  });
+}
+
 function getFilteredProducts(){
   return products.filter(p => {
     const categoryMatch =
@@ -72,6 +99,8 @@ function renderProducts(){
   </div>
 </div>
   `).join("");
+  
+  animateProductCards();
 }
 
 function updateActiveButton(){

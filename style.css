@@ -729,3 +729,30 @@ font-size:32px;
         font-size:25px;
     }
 }
+
+/* ANIMACIÓN DE ENTRADA DE PRODUCTOS */
+
+.card{
+    opacity:0;
+    transform:translateY(35px);
+}
+
+.card.reveal{
+    opacity:1;
+    transform:translateY(0);
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        box-shadow .35s ease;
+}
+
+@media (prefers-reduced-motion:reduce){
+    .card{
+        opacity:1;
+        transform:none;
+    }
+
+    .card.reveal{
+        transition:none;
+    }
+}
