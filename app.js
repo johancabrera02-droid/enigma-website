@@ -438,12 +438,16 @@ async function loadProducts(){
        
        console.log(products);
 
-      products.sort((a, b) => {
-          const idA = Number(a.id || 0);
-          const idB = Number(b.id || 0);
-
-          return idB - idA;
-      });
+       products.sort((a, b) => {
+        const codigoA = String(a.codigo || "");
+        const codigoB = String(b.codigo || "");
+    
+        return codigoB.localeCompare(
+            codigoA,
+            undefined,
+            { numeric:true, sensitivity:"base" }
+        );
+    });
 
       console.log("Productos ordenados:", products);
 
