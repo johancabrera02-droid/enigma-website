@@ -184,6 +184,61 @@ function showNextProduct(){
   openProductModal(products[currentModalIndex]);
 }
 
+
+
+function changeModalImage(imageUrl, button){
+  const modalImage = document.getElementById("modalImage");
+
+  modalImage.classList.add("changing");
+
+  setTimeout(() => {
+      modalImage.src = imageUrl;
+      modalImage.classList.remove("changing");
+  }, 180);
+
+  document
+      .querySelectorAll(".modal-thumbnail")
+      .forEach(thumbnail => thumbnail.classList.remove("active"));
+
+  if(button){
+      button.classList.add("active");
+  }
+}
+
+function renderModalGallery(product){
+  const images = getProductImages(product);
+  const modalImage = document.getElementById("modalImage");
+  const thumbnails = document.getElementById("modalThumbnails");
+
+  const fallbackImage = "logo-enigma.png";
+  const mainImage = images[0] || fallbackImage;
+
+  modalImage.src = mainImage;
+  modalImage.alt = product.nombre || "Producto de Enigma Collection";
+
+  if(images.length <= 1){
+      thumbnails.innerHTML = "";
+      thumbnails.classList.add("hidden");
+      return;
+  }
+
+  thumbnails.classList.remove("hidden");
+
+  thumbnails.innerHTML = images.map((image, index) => `
+      <button
+          type="button"
+          class="modal-thumbnail ${index === 0 ? "active" : ""}"
+          onclick="changeModalImage('${image}', this)"
+          aria-label="Ver imagen ${index + 1}"
+      >
+          <img
+              src="${image}"
+              alt="${product.nombre || "Producto"} — imagen ${index + 1}"
+          >
+      </button>
+  `).join("");
+}
+
 function openProductModal(product){
   const modal = document.getElementById("productModal");
 
@@ -219,8 +274,46 @@ function openProductModal(product){
   document.body.classList.add("modal-open");
 }
 
+function openImageZoom(){
+  const modalImage = document.getElementById("modalImage");
+  const zoomModal = document.getElementById("imageZoomModal");
+  const zoomedImage = document.getElementById("zoomedProductImage");
+
+  if(!modalImage || !modalImage.src){
+      return;
+  }
+
+  zoomedImage.src = modalImage.src;
+  zoomedImage.alt =
+      modalImage.alt || "Imagen ampliada del producto";
+
+  zoomModal.classList.add("open");
+  zoomModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("image-zoom-open");
+}
+
+function closeImageZoom(){
+  const zoomModal = document.getElementById("imageZoomModal");
+
+  if(!zoomModal){
+      return;
+  }
+
+  zoomModal.classList.remove("open");
+  zoomModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("image-zoom-open");
+}
+
+function closeImageZoomFromBackground(event){
+  if(event.target.id === "imageZoomModal"){
+      closeImageZoom();
+  }
+}
+
 function closeProductModal(){
   const modal = document.getElementById("productModal");
+
+  closeImageZoom();
 
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
@@ -228,9 +321,18 @@ function closeProductModal(){
 }
 
 document.addEventListener("keydown", event => {
-  const modal = document.getElementById("productModal");
+  const zoomModal = document.getElementById("imageZoomModal");
+  const productModal = document.getElementById("productModal");
 
-  if(!modal?.classList.contains("open")){
+  if(
+      event.key === "Escape" &&
+      zoomModal?.classList.contains("open")
+  ){
+      closeImageZoom();
+      return;
+  }
+
+  if(!productModal?.classList.contains("open")){
       return;
   }
 

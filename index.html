@@ -162,9 +162,28 @@
     ›
 </button>
 
-      <div class="product-modal-image">
-          <img id="modalImage" src="" alt="">
-      </div>
+     <div class="product-modal-gallery">
+
+         <div class="product-modal-image">
+             <img
+                 id="modalImage"
+                 src=""
+                 alt=""
+                 class="modal-image-clickable"
+                 onclick="openImageZoom()"
+            >
+
+      <button
+          class="modal-zoom-button"
+          type="button"
+          onclick="openImageZoom()"
+          aria-label="Ampliar imagen del producto"
+      >
+          Ampliar imagen
+      </button>
+  </div>
+
+</div>
 
       <div class="product-modal-info">
           <span id="modalBrand" class="modal-brand"></span>
@@ -183,6 +202,29 @@
           </a>
       </div>
   </div>
+</div>
+
+<div
+    id="imageZoomModal"
+    class="image-zoom-modal"
+    aria-hidden="true"
+    onclick="closeImageZoomFromBackground(event)"
+>
+    <button
+        class="image-zoom-close"
+        type="button"
+        onclick="closeImageZoom()"
+        aria-label="Cerrar imagen ampliada"
+    >
+        ×
+    </button>
+
+    <img
+        id="zoomedProductImage"
+        src=""
+        alt=""
+        onclick="event.stopPropagation()"
+    >
 </div>
 
 <script src="app.js"></script>
