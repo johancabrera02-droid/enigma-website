@@ -824,91 +824,215 @@ font-size:32px;
 .product-modal-content{
     position:relative;
     z-index:1;
-    width:min(980px, 100%);
+
+    width:min(1080px, 94vw);
     max-height:90vh;
-    overflow:auto;
+    overflow:hidden;
 
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1.08fr .92fr;
 
     background:#fff;
-    box-shadow:0 30px 90px rgba(0,0,0,.35);
+    border:1px solid rgba(212,175,55,.24);
+
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.42);
+
+    animation:modalEntrance .42s cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes modalEntrance{
+    from{
+        opacity:0;
+        transform:translateY(24px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.product-modal-image{
+    position:relative;
+    min-height:620px;
+    overflow:hidden;
+    background:#f4f1eb;
+}
+
+.product-modal-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.12),
+        transparent 35%
+    );
+
+    pointer-events:none;
 }
 
 .product-modal-image img{
     width:100%;
     height:100%;
-    min-height:560px;
+    min-height:620px;
+
     object-fit:cover;
+    object-position:center;
+
     display:block;
+
+    transition:transform .8s cubic-bezier(.19,1,.22,1);
+}
+
+.product-modal-image:hover img{
+    transform:scale(1.035);
 }
 
 .product-modal-info{
-    padding:70px 55px;
+    position:relative;
+
+    padding:76px 62px 58px;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(212,175,55,.05),
+            transparent 38%
+        ),
+        #fff;
 }
+
+.product-modal-info::before{
+    content:"";
+    width:52px;
+    height:2px;
+
+    background:#d4af37;
+
+    margin-bottom:25px;
+}
+
+
 
 .product-modal-close{
     position:absolute;
-    top:18px;
-    right:22px;
-    z-index:4;
+    top:20px;
+    right:24px;
+    z-index:8;
 
-    border:none;
-    background:transparent;
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(17,17,17,.12);
+    border-radius:50%;
+
+    background:rgba(255,255,255,.9);
     color:#111;
-    font-size:38px;
+
+    font-size:30px;
+    line-height:1;
+
     cursor:pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+.product-modal-close:hover{
+    background:#111;
+    color:#fff;
+    transform:rotate(90deg);
 }
 
 .modal-brand{
     color:#b58d18;
+
     font-size:12px;
-    font-weight:700;
+    font-weight:800;
+
     letter-spacing:3px;
     text-transform:uppercase;
+
     margin-bottom:16px;
 }
 
 .product-modal-info h2{
     font-family:Georgia, "Times New Roman", serif;
+
     color:#111;
-    font-size:42px;
+
+    font-size:48px;
     font-weight:500;
-    line-height:1.15;
-    margin-bottom:24px;
+    line-height:1.05;
+
+    margin:0 0 24px;
 }
 
 .product-modal-info p{
     color:#666;
+
     font-size:16px;
     line-height:1.8;
+
     margin-bottom:30px;
 }
 
 .modal-price{
     color:#111;
-    font-size:28px;
+
+    font-size:30px;
     font-weight:800;
-    margin-bottom:30px;
+
+    margin-bottom:32px;
 }
 
+
 .modal-whatsapp{
-    display:block;
-    text-align:center;
-    padding:17px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:56px;
+    padding:16px 24px;
+
     background:#111;
     color:#fff;
+
+    text-align:center;
     text-decoration:none;
-    font-weight:700;
-    transition:.3s ease;
+
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.5px;
+
+    border:1px solid #111;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
 }
 
 .modal-whatsapp:hover{
     background:#d4af37;
+    border-color:#d4af37;
     color:#111;
+
+    transform:translateY(-2px);
 }
 
 body.modal-open{
@@ -1294,5 +1418,82 @@ body.modal-open{
         font-size:15px;
         line-height:1.2;
         text-align:center;
+    }
+}
+
+@media (max-width:900px){
+
+    .product-modal{
+        padding:0;
+        align-items:flex-end;
+    }
+
+    .product-modal-content{
+        width:100%;
+        max-height:94vh;
+
+        grid-template-columns:1fr;
+
+        overflow:auto;
+
+        border:none;
+        border-radius:18px 18px 0 0;
+    }
+
+    .product-modal-image{
+        min-height:390px;
+        height:46vh;
+    }
+
+    .product-modal-image img{
+        min-height:390px;
+        height:100%;
+
+        object-position:center;
+    }
+
+    .product-modal-info{
+        padding:38px 25px 32px;
+    }
+
+    .product-modal-info::before{
+        margin-bottom:20px;
+    }
+
+    .product-modal-info h2{
+        font-size:35px;
+        line-height:1.08;
+        margin-bottom:18px;
+    }
+
+    .product-modal-info p{
+        font-size:15px;
+        line-height:1.65;
+        margin-bottom:22px;
+    }
+
+    .modal-price{
+        font-size:26px;
+        margin-bottom:24px;
+    }
+
+    .modal-whatsapp{
+        min-height:52px;
+        width:100%;
+    }
+
+    .product-modal-close{
+        position:fixed;
+        top:18px;
+        right:18px;
+
+        width:40px;
+        height:40px;
+
+        background:rgba(255,255,255,.94);
+    }
+
+    .product-modal-nav{
+        top:23%;
     }
 }
