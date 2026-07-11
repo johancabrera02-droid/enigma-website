@@ -434,7 +434,13 @@ async function loadProducts(){
         
 
        const res = await fetch(API_URL);
-       products = await response.json();
+       
+       if(!res.ok){
+        throw new Error(`Error HTTP: ${res.status}`);
+       } 
+       
+       
+       products = await res.json();
        
        console.log(products);
 
