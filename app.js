@@ -88,32 +88,36 @@ grid.innerHTML = filtered.map((p, index) => `
 
     <span class="badge">NUEVO</span>
 
-    <a
-    class="image-buy"
-    target="_blank"
-    rel="noopener"
-    onclick="event.stopPropagation()"
-      href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-        "Hola, me interesa este producto: " +
-        (p.nombre || "") +
-        " " +
-        money(p.precio_venta)
-      )}">
-      Comprar por WhatsApp
-    </a>
-  
+    <div class="card-actions">
 
     <button
-    class="quick-view"
-    type="button"
-    onclick="event.stopPropagation(); openProductModalByIndex(${index})"
-  >
-    Vista rápida
-</button>
+        class="quick-view"
+        type="button"
+        onclick="event.stopPropagation(); openProductModalByIndex(${index})"
+    >
+        Vista rápida
+    </button>
+
+    <a
+        class="image-buy"
+        target="_blank"
+        rel="noopener"
+        onclick="event.stopPropagation()"
+        href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+            "Hola, me interesa este producto: " +
+            (p.nombre || "") +
+            " " +
+            money(p.precio_venta)
+        )}"
+    >
+        Comprar por WhatsApp
+    </a>
 
   </div>
 
-  <div class="card-body">
+</div>
+
+<div class="card-body">
     <div class="brand">${p.marca || "ENIGMA"}</div>
     <div class="name">${p.nombre || ""}</div>
     
