@@ -8,6 +8,8 @@ let products = [];
 let currentCategory = "Todos";
 let currentSearch = "";
 let currentModalIndex = 0;
+let currentModalProduct = null;
+let modalQuantity = 1;
 
 function money(value){
   return "RD$ " + Number(value || 0).toLocaleString("es-DO");
@@ -42,6 +44,60 @@ function animateProductCards(){
       card.dataset.delay = (index % 4) * 110;
       observer.observe(card);
   });
+}
+
+function updateModalQuantity(){
+  const quantityElement = document.getElementById("modalQuantity");
+
+  if(quantityElement){
+      quantityElement.textContent = modalQuantity;
+  }
+
+  updateModalWhatsAppLink();
+}
+
+function increaseModalQuantity(){
+  modalQuantity += 1;
+  updateModalQuantity();
+}
+
+function decreaseModalQuantity(){
+  if(modalQuantity > 1){
+      modalQuantity -= 1;
+      updateModalQuantity();
+  }
+}
+
+function updateModalWhatsAppLink(){
+  if(!currentModalProduct){
+      return;
+  }
+
+  const whatsappButton = document.getElementById("modalWhatsApp");
+
+  if(!whatsappButton){
+      return;
+  }
+
+  const productName =
+      currentModalProduct.nombre || "Producto";
+
+  const unitPrice =
+      Number(currentModalProduct.precio_venta) || 0;
+
+  const totalPrice =
+      unitPrice * modalQuantity;
+
+  const message = [
+      "Hola, me interesa este producto:",
+      productName,
+      `Cantidad: ${modalQuantity}`,
+      `Precio unitario: ${money(unitPrice)}`,
+      `Total: ${money(totalPrice)}`
+  ].join("\n");
+
+  whatsappButton.href =
+      `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
 }
 
 function getFilteredProducts(){
@@ -242,6 +298,9 @@ function renderModalGallery(product){
 function openProductModal(product){
   const modal = document.getElementById("productModal");
 
+  currentModalProduct = product;
+  modalQuantity = 1;
+
   document.getElementById("modalImage").src =
       product.foto_url || "logo-enigma.png";
 
@@ -261,13 +320,7 @@ function openProductModal(product){
   document.getElementById("modalPrice").textContent =
       money(product.precio_venta);
 
-  document.getElementById("modalWhatsApp").href =
-      `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-          "Hola, me interesa este producto: " +
-          (product.nombre || "") +
-          " " +
-          money(product.precio_venta)
-      )}`;
+  updateModalQuantity();
 
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");

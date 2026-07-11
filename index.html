@@ -30,7 +30,7 @@
     "@type": "ClothingStore",
     "name": "Enigma Collection RD",
     "description": "Boutique online en República Dominicana especializada en ropa, perfumes, accesorios y tendencias exclusivas.",
-    "url": "https://johancabrera02-droid.github.io/enigma-website/",
+    "url": "https://enigmacollectionrd.com",
     "logo": "https://johancabrera02-droid.github.io/enigma-website/logo-enigma.png",
     "image": "https://johancabrera02-droid.github.io/enigma-website/logo-enigma.png",
     "telephone": "+18292174555",
@@ -190,6 +190,30 @@
           <h2 id="modalName"></h2>
           <p id="modalDescription"></p>
           <div id="modalPrice" class="modal-price"></div>
+
+          <div class="modal-quantity">
+            <span class="modal-quantity-label">Cantidad</span>
+        
+            <div class="quantity-control">
+                <button
+                    type="button"
+                    onclick="decreaseModalQuantity()"
+                    aria-label="Disminuir cantidad"
+                >
+                    −
+                </button>
+        
+                <span id="modalQuantity">1</span>
+        
+                <button
+                    type="button"
+                    onclick="increaseModalQuantity()"
+                    aria-label="Aumentar cantidad"
+                >
+                    +
+                </button>
+            </div>
+        </div>
 
           <a
               id="modalWhatsApp"

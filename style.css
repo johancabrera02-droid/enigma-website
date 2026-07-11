@@ -1803,3 +1803,84 @@ body.image-zoom-open{
         font-size:30px;
     }
 }
+
+/* SELECTOR DE CANTIDAD DEL MODAL */
+
+.modal-quantity{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:18px 0;
+    margin-bottom:26px;
+
+    border-top:1px solid rgba(17,17,17,.1);
+    border-bottom:1px solid rgba(17,17,17,.1);
+}
+
+.modal-quantity-label{
+    color:#111;
+
+    font-size:13px;
+    font-weight:800;
+
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.quantity-control{
+    display:flex;
+    align-items:center;
+
+    border:1px solid rgba(17,17,17,.2);
+}
+
+.quantity-control button{
+    width:42px;
+    height:42px;
+
+    border:none;
+    background:#fff;
+    color:#111;
+
+    font-size:23px;
+    line-height:1;
+
+    cursor:pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+}
+
+.quantity-control button:hover{
+    background:#d4af37;
+    color:#111;
+}
+
+.quantity-control span{
+    min-width:46px;
+
+    text-align:center;
+
+    color:#111;
+    font-size:16px;
+    font-weight:800;
+}
+
+@media (max-width:900px){
+
+    .modal-quantity{
+        margin-bottom:22px;
+        padding:15px 0;
+    }
+
+    .quantity-control button{
+        width:40px;
+        height:40px;
+    }
+
+    .quantity-control span{
+        min-width:42px;
+    }
+}
