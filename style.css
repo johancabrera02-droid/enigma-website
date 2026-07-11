@@ -1109,3 +1109,130 @@ body.modal-open{
     }
 }
 
+/* OVERLAY PREMIUM DE LAS TARJETAS */
+
+.card-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.72) 0%,
+        rgba(0,0,0,.28) 36%,
+        transparent 70%
+    );
+
+    opacity:0;
+    transition:opacity .45s ease;
+    pointer-events:none;
+}
+
+.card:hover .card-image::after{
+    opacity:1;
+}
+
+.card-actions{
+    position:absolute;
+    z-index:4;
+
+    left:20px;
+    right:20px;
+    bottom:20px;
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    opacity:0;
+    transform:translateY(18px);
+
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+}
+
+.card:hover .card-actions{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card-actions .quick-view,
+.card-actions .image-buy{
+    position:static;
+
+    width:100%;
+    min-height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.82);
+    border-radius:0;
+
+    padding:14px 18px;
+
+    font-family:inherit;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.8px;
+
+    text-decoration:none;
+    cursor:pointer;
+
+    opacity:1;
+    transform:none;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.card-actions .quick-view{
+    background:rgba(255,255,255,.94);
+    color:#111;
+}
+
+.card-actions .image-buy{
+    background:rgba(17,17,17,.94);
+    color:#fff;
+}
+
+.card-actions .quick-view:hover,
+.card-actions .image-buy:hover{
+    background:#d4af37;
+    border-color:#d4af37;
+    color:#111;
+}
+
+
+@media (max-width:900px){
+
+    .card-image::after{
+        opacity:1;
+        background:linear-gradient(
+            to top,
+            rgba(0,0,0,.58) 0%,
+            transparent 55%
+        );
+    }
+
+    .card-actions{
+        left:14px;
+        right:14px;
+        bottom:14px;
+
+        opacity:1;
+        transform:none;
+    }
+
+    .card-actions .quick-view,
+    .card-actions .image-buy{
+        min-height:44px;
+        padding:12px 14px;
+        font-size:12px;
+    }
+}
