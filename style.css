@@ -1884,3 +1884,143 @@ body.image-zoom-open{
         min-width:42px;
     }
 }
+
+/* BENEFICIOS Y CONFIANZA */
+
+.benefits{
+    padding:120px 8%;
+    background:#111;
+    color:#fff;
+}
+
+.benefits-heading{
+    max-width:720px;
+    margin:0 auto 70px;
+    text-align:center;
+}
+
+.benefits-heading span{
+    display:block;
+    margin-bottom:14px;
+
+    color:#d4af37;
+
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:3px;
+}
+
+.benefits-heading h2{
+    margin-bottom:18px;
+
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:52px;
+    font-weight:500;
+    line-height:1.08;
+}
+
+.benefits-heading p{
+    color:#aaa;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.benefits-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+
+    max-width:1300px;
+    margin:auto;
+
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.benefit-card{
+    min-height:300px;
+    padding:46px 34px;
+
+    background:#111;
+
+    transition:
+        background .35s ease,
+        transform .35s ease;
+}
+
+.benefit-card:hover{
+    position:relative;
+    z-index:2;
+
+    background:#181818;
+    transform:translateY(-6px);
+}
+
+.benefit-icon{
+    width:54px;
+    height:54px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:30px;
+
+    border:1px solid rgba(212,175,55,.45);
+    border-radius:50%;
+}
+
+.benefit-icon svg{
+    width:25px;
+    height:25px;
+
+    fill:none;
+    stroke:#d4af37;
+    stroke-width:1.5;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.benefit-card h3{
+    margin-bottom:16px;
+
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:25px;
+    font-weight:500;
+}
+
+.benefit-card p{
+    color:#999;
+    font-size:14px;
+    line-height:1.75;
+}
+
+@media (max-width:1050px){
+    .benefits-grid{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media (max-width:600px){
+    .benefits{
+        padding:85px 22px;
+    }
+
+    .benefits-heading{
+        margin-bottom:45px;
+        text-align:left;
+    }
+
+    .benefits-heading h2{
+        font-size:39px;
+    }
+
+    .benefits-grid{
+        grid-template-columns:1fr;
+    }
+
+    .benefit-card{
+        min-height:auto;
+        padding:38px 28px;
+    }
+}
