@@ -435,6 +435,8 @@ async function loadProducts(){
 
        const res = await fetch(API_URL);
        products = await response.json();
+       
+       console.log(products);
 
       products.sort((a, b) => {
           const idA = Number(a.id || 0);
@@ -442,6 +444,9 @@ async function loadProducts(){
 
           return idB - idA;
       });
+
+      console.log("Productos ordenados:", products);
+
 
      renderProducts();
      updateActiveButton();
