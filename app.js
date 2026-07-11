@@ -130,6 +130,22 @@ grid.innerHTML = filtered.map((p, index) => `
   animateProductCards();
 }
 
+function showProductSkeletons(quantity = 8){
+  grid.innerHTML = Array.from({ length: quantity }, () => `
+      <article class="card skeleton-card" aria-hidden="true">
+          <div class="skeleton skeleton-image"></div>
+
+          <div class="card-body skeleton-body">
+              <div class="skeleton skeleton-brand"></div>
+              <div class="skeleton skeleton-name"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text short"></div>
+              <div class="skeleton skeleton-price"></div>
+          </div>
+      </article>
+  `).join("");
+}
+
 function openProductModalByIndex(index){
   const product = window.visibleProducts?.[index];
 
@@ -257,8 +273,10 @@ function searchProducts(){
 }
 
 async function loadProducts(){
+    showProductSkeletons();
+  
   try{
-    grid.innerHTML = `<p class="loading">Cargando productos...</p>`;
+        grid.innerHTML = `<p class="loading">Cargando productos...</p>`;
 
     const res = await fetch(API_URL);
     products = await res.json();
