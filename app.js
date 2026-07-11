@@ -430,16 +430,23 @@ function searchProducts(){
 async function loadProducts(){
     showProductSkeletons();
   
-  try{
-        grid.innerHTML = `<p class="loading">Cargando productos...</p>`;
+    try{
+        
 
-    const res = await fetch(API_URL);
-    products = await res.json();
+       const res = await fetch(API_URL);
+       products = await response.json();
 
-    renderProducts();
-    updateActiveButton();
+      products.sort((a, b) => {
+          const idA = Number(a.id || 0);
+          const idB = Number(b.id || 0);
 
-  }catch(e){
+          return idB - idA;
+      });
+
+     renderProducts();
+     updateActiveButton();
+
+   }catch(e){
     grid.innerHTML = `<p class="empty">No se pudieron cargar los productos.</p>`;
   }
 }
