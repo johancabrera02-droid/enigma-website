@@ -1236,3 +1236,63 @@ body.modal-open{
         font-size:12px;
     }
 }
+
+@media (max-width:900px){
+
+    .hero{
+        min-height:auto;
+        height:auto;
+        padding:110px 24px 55px;
+
+        background-size:cover;
+        background-position:64% center;
+        background-repeat:no-repeat;
+    }
+
+    .hero-content{
+        width:100%;
+        max-width:none;
+        text-align:left;
+        padding:0;
+    }
+
+    .eyebrow{
+        font-size:13px;
+        letter-spacing:3px;
+        margin-bottom:16px;
+    }
+
+    .hero h1{
+        font-size:48px;
+        line-height:1.02;
+        max-width:520px;
+        margin-bottom:24px;
+    }
+
+    .hero p{
+        font-size:20px;
+        line-height:1.55;
+        max-width:560px;
+        margin:0 0 32px;
+    }
+
+    .hero-actions{
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:12px;
+        width:100%;
+        max-width:360px;
+        margin:0;
+    }
+
+    .hero-actions .btn{
+        width:100%;
+        min-height:52px;
+        padding:14px 20px;
+        border-radius:6px;
+        font-size:15px;
+        line-height:1.2;
+        text-align:center;
+    }
+}
