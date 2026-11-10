@@ -176,10 +176,10 @@ grid.innerHTML = filtered.map((p, index) => `
 <div class="card-body">
     <div class="brand">${p.marca || "ENIGMA"}</div>
     <div class="name">${p.nombre || ""}</div>
-    
-    <p class="desc">${p.descripcion || "Producto seleccionado por Enigma Collection RD."}</p>
+
     <div class="price">${money(p.precio_venta)}</div>
-  </div>
+    <p class="desc">${p.descripcion || "Producto seleccionado por Enigma Collection RD."}</p>
+</div>
 </div>
 `).join("");
   
@@ -445,14 +445,7 @@ async function loadProducts(){
        console.log(products);
 
        products.sort((a, b) => {
-        const codigoA = String(a.codigo || "");
-        const codigoB = String(b.codigo || "");
-    
-        return codigoB.localeCompare(
-            codigoA,
-            undefined,
-            { numeric:true, sensitivity:"base" }
-        );
+        return Number(b.id) - Number(a.id);
     });
 
       console.log("Productos ordenados:", products);
