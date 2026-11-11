@@ -94,9 +94,17 @@ Open http://localhost:8000 in your browser.
 
 The product catalog requires access to the public backend API.
 
+
 ## Screenshots
 
-Desktop and mobile screenshots will be added here.
+### Desktop — Homepage
+
+![Enigma Collection RD Desktop Homepage](screenshots/desktop-home.png)
+
+### Mobile — Product Catalog
+
+<img src="screenshots/mobile-catalog.png" alt="Enigma Collection RD Mobile Product Catalog" width="320">
+
 
 ## Future Improvements
 
