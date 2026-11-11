@@ -122,6 +122,24 @@ function getFilteredProducts(){
   });
 }
 
+function esProductoNuevo(fechaRegistro) {
+  if (!fechaRegistro) return false;
+
+  const fechaTexto = String(fechaRegistro).trim();
+
+  // Las fechas de Google Sheets usan el horario de República Dominicana (UTC-4).
+  const fechaISO = fechaTexto.replace(" ", "T") + "-04:00";
+  const fecha = new Date(fechaISO);
+
+  if (isNaN(fecha.getTime())) return false;
+
+  const ahora = new Date();
+  const antiguedad = ahora.getTime() - fecha.getTime();
+  const veintiunDias = 21 * 24 * 60 * 60 * 1000;
+
+  return antiguedad >= 0 && antiguedad < veintiunDias;
+}
+
 function renderProducts(){
   const filtered = getFilteredProducts();
 
@@ -142,7 +160,7 @@ grid.innerHTML = filtered.map((p, index) => `
   onclick="openProductModalByIndex(${index})"
 >
 
-    <span class="badge">NUEVO</span>
+  ${esProductoNuevo(p.fecha_registro) ? '<span class="badge">NUEVO</span>' : ''}
 
     <div class="card-actions">
 
