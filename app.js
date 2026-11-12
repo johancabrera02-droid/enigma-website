@@ -102,10 +102,11 @@ function updateModalWhatsAppLink(){
 
 function getFilteredProducts(){
   return products.filter(p => {
+    
     const categoryMatch =
       currentCategory === "Todos" ||
-      normalize(p.tipo_inventario) === normalize(currentCategory) ||
       normalize(p.categoria) === normalize(currentCategory);
+
 
     const searchText = [
       p.nombre,
@@ -420,19 +421,68 @@ document.addEventListener("keydown", event => {
   }
 });
 
+
+function renderCategoryFilters(){
+  const container = document.getElementById("categoryFilters");
+
+  if(!container) return;
+
+  
+  const categoriesMap = new Map();
+
+  products.forEach(p => {
+    const category = String(p.categoria || "")
+      .normalize("NFKC")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if(!category) return;
+
+    const key = category.toLocaleLowerCase("es");
+
+    if(!categoriesMap.has(key)){
+      categoriesMap.set(key, category);
+    }
+  });
+
+  const categories = [...categoriesMap.values()]
+    .sort((a, b) => a.localeCompare(b, "es"));
+
+
+  container.innerHTML = "";
+
+  ["Todos", ...categories].forEach(category => {
+    const button = document.createElement("button");
+
+    button.textContent = category;
+    button.type = "button";
+
+    button.addEventListener("click", () => {
+      filterProducts(category);
+    });
+
+    if(category === currentCategory){
+      button.classList.add("active");
+    }
+
+    container.appendChild(button);
+  });
+}
+
+
+
 function updateActiveButton(){
   document.querySelectorAll(".filters button").forEach(btn => {
     btn.classList.remove("active");
 
-    if(btn.textContent.trim().toLowerCase() === currentCategory.toLowerCase()){
-      btn.classList.add("active");
-    }
-
-    if(currentCategory === "Ropas" && btn.textContent.trim().toLowerCase() === "ropa"){
+    if(
+      normalize(btn.textContent) === normalize(currentCategory)
+    ){
       btn.classList.add("active");
     }
   });
 }
+
 
 function filterProducts(category){
   currentCategory = category;
@@ -469,8 +519,9 @@ async function loadProducts(){
       console.log("Productos ordenados:", products);
 
 
-     renderProducts();
-     updateActiveButton();
+      renderCategoryFilters();
+      renderProducts();
+      updateActiveButton();
 
    }catch(e){
     grid.innerHTML = `<p class="empty">No se pudieron cargar los productos.</p>`;
